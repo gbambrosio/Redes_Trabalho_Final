@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" /> 
+    <title>Cadastro - Agendamento de Check-up</title>
+    <link rel="stylesheet" href="cadastro.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+    <header>
+      <!-- Controles de acessibilidade (mesmos controles do index) -->
+      <div class="accessibility-controls" role="region" aria-label="Controles de acessibilidade">
+        <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="reset-font" aria-label="Restaurar tamanho da fonte">A</button>
+        <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button id="toggle-colorblind" aria-pressed="false" aria-label="Ativar modo para daltônicos">Daltonismo</button>
+        <button id="toggle-dyslexia" aria-pressed="false" aria-label="Ativar modo para dislexia">Espaçamento</button>
+        <div id="accessibility-announcer" class="sr-only" aria-live="polite"></div>
+      </div>
+      <div class="logo-container">
+        <h1>Novembro Azul</h1>
+      </div>
+      <button id="theme-toggle" aria-label="Alternar Tema" title="Alternar Tema" class="theme-toggle-btn">
+        <span id="theme-icon">🌙</span> 
+      </button>
+    </header>
+
+  <main id="main-content" class="container">
+      <h2>Agendamento de Check-up de Prevenção</h2>
+
+      <p class="intro-text">
+        A prevenção é o primeiro passo para uma vida mais longa e saudável.
+        Utilize este formulário para demonstrar seu interesse em agendar um
+        check-up gratuito de saúde masculina (incluindo PSA) em uma unidade
+        básica de saúde conveniada. Seus dados serão utilizados apenas para fins
+        de triagem e contato inicial.
+      </p>
+
+      <!-- Formulário de cadastro: interceptado por JavaScript (script_cadastro.js)
+           para enviar dados via AJAX para save_cadastro.php
+      -->
+      <form id="cadastro-form" action="cadastro_bd.php" method="post">
+        <fieldset class="personal-data">
+          <legend>Dados Pessoais</legend>
+
+          <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" inputmode="numeric" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label for="cpf">CPF (Apenas números):</label>
+            <input type="text" id="cpf" name="cpf" inputmode="numeric" pattern="[0-9]{11}" aria-describedby="cpf-help" required />
+            <small id="cpf-help">Digite 11 dígitos, sem pontos ou traços.</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="screening-data">
+          <legend>Dados para Triagem</legend>
+
+          <div class="form-group">
+            <label for="cartao_sus">Cartão SUS (Opcional):</label>
+            <input type="text" id="cartao_sus" name="cartao_sus" inputmode="numeric" />
+          </div>
+
+          <div class="form-group">
+            <label for="historico"
+              >Você possui histórico familiar de câncer de próstata?</label
+            >
+            <select id="historico" name="historico_familiar">
+              <option value="nao">Não</option>
+              <option value="sim">Sim</option>
+              <option value="nao_sei">Não sei informar</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="submit-button">Enviar Inscrição</button>
+        <div class="back-link">
+          <a href="./index.html">Voltar</a>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <p>Novembro Azul - Combate ao Câncer de Próstata</p>
+      </div>
+    </footer>
+    <script src="script_cadastro.js"></script>
+    <script src="accessibility.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+/* Chatbot styles - floating bubble + chat window */
+:root{
+  --chat-bg:#ffffff;
+  --chat-text:#111827;
+  --chat-accent:#0b5ed7; /* azul */
+  --chat-shadow: 0 8px 24px rgba(11,94,215,0.18);
+}
+
+#chat-bubble{
+  position:fixed;
+  right:20px;
+  bottom:24px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--chat-accent),#004aad);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--chat-shadow);
+  cursor:pointer;
+  z-index:2000;
+  font-size:1.6rem;
+}
+
+#chat-window{
+  position:fixed;
+  right:20px;
+  bottom:96px;
+  width:340px;
+  max-width:92vw;
+  height:460px;
+  background:var(--chat-bg);
+  color:var(--chat-text);
+  border-radius:12px;
+  box-shadow:var(--chat-shadow);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:2000;
+  transform:translateY(10px) scale(0.98);
+  opacity:0;
+  pointer-events:none;
+  transition:transform .18s ease,opacity .18s ease;
+}
+
+#chat-window[aria-hidden="false"]{
+  transform:translateY(0) scale(1);
+  opacity:1;
+  pointer-events:auto;
+}
+
+.chat-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 14px;
+  background:linear-gradient(90deg,var(--chat-accent),#1a73e8);
+  color:#fff;
+}
+.chat-title{font-weight:700}
+.chat-header button{background:transparent;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+
+.chat-messages{
+  flex:1 1 auto;
+  padding:12px;
+  overflow:auto;
+  background:linear-gradient(180deg,rgba(11,94,215,0.03),transparent);
+}
+.chat-msg{display:block;margin-bottom:10px;max-width:85%}
+.chat-msg.user{margin-left:auto;text-align:right}
+.chat-msg .bubble{display:inline-block;padding:8px 10px;border-radius:12px}
+.chat-msg.user .bubble{background:var(--chat-accent);color:#fff;border-bottom-right-radius:4px}
+.chat-msg.bot .bubble{background:#f1f5f9;color:var(--chat-text);border-bottom-left-radius:4px}
+
+.chat-footer{display:flex;gap:8px;padding:10px;border-top:1px solid #e6eefb}
+.chat-footer input{flex:1;padding:10px;border-radius:8px;border:1px solid #dfe7fb;outline:none}
+.chat-footer button{background:var(--chat-accent);color:#fff;border:none;padding:9px 12px;border-radius:8px;cursor:pointer}
+
+/* typing indicator */
+.typing{font-style:italic;color:#6b7280}
+
+@media (max-width:420px){
+  #chat-window{right:12px;left:12px;width:auto;height:60vh;bottom:84px}
+  #chat-bubble{right:12px;bottom:18px}
+}
